@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+
       title: 'Flutter Demo',
       theme: new ThemeData(
         // This is the theme of your application.
@@ -39,6 +40,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.pink,
       ),
       home: new MyHomePage(title: '#trvl'),
+      routes: <String, WidgetBuilder> {
+       // "/SecondPage": (BuildContext context) => new secondPage();
+      },
     );
   }
 }
@@ -100,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
 
-      backgroundColor: Color.fromRGBO(255, 250, 247, 1.0),
+      backgroundColor: Color.fromRGBO(151,8,70, 1.0),
       body: new Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -121,31 +125,34 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             new Image.asset(
-                'imgs/trvlogo.png',
-                fit: BoxFit.cover
+                'imgs/newlogo.png'
             )
             ,
-            new SizedBox(height: 80.00),
             new Text(
               'Where do you want to go? '
-                ,textScaleFactor: 2.0,
-                style: TextStyle(fontFamily: 'serif', color: Colors.brown)
+                ,textScaleFactor: 1.6,
+                style: TextStyle(fontFamily: 'monospace', color: Colors.white)
             ),
-           new SizedBox(height: 50.00),
-           new DropdownButton<String>(
+           new DropdownButton<String>( style: TextStyle(fontFamily: 'monospace', color: Color.fromRGBO(151,8,70, 1.0)),
           items: <String>['San Franscisco', 'Los Angeles', 'Jakarta', 'Melbourne'].map((String value) {
             return new DropdownMenuItem<String>(
               value: value,
-              child: new Text(value),
+              child: new Text(value)
+                ,
             );
           }).toList(),
           onChanged: (_) {},
         ),
-            new SizedBox(height: 40.00),
 
-            new Text(
+            new Container (padding: new EdgeInsets.all(8.0), color: Colors.white, child: Text(
               'Take me somewhere new!', textScaleFactor: 1.7,
-                style: TextStyle(fontFamily: 'serif', color: Colors.brown)
+                style: TextStyle(fontFamily: 'monospace', color: Color.fromRGBO(151,8,70, 1.0))
+            )),
+            RaisedButton(
+              child: Text('NEXT'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
           ],
         ),
