@@ -1,6 +1,25 @@
 import 'package:flutter/material.dart';
+
+import 'package:material_search/material_search.dart';
+const _list = const [
+  'San Francisco',
+  'New York',
+  'Los Angeles',
+  'Jakarta',
+  'Bandung',
+  'Bali',
+  'Tokyo',
+  'Hawaii',
+  'Melbourne',
+];
+
+
 //does this work? Angelica
 void main() => runApp(new MyApp());
+
+
+
+
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -17,7 +36,7 @@ class MyApp extends StatelessWidget {
         // "hot reload" (press "r" in the console where you ran "flutter run",
         // or press Run > Flutter Hot Reload in IntelliJ). Notice that the
         // counter didn't reset back to zero; the application is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.pink,
       ),
       home: new MyHomePage(title: '#trvl'),
     );
@@ -45,6 +64,18 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+
+  AppBar buildAppBar(BuildContext context) {
+    return new AppBar(
+        title: new Text('My Home Page'),
+        //actions: [searchBar.getSearchAction(context)]
+    );
+  }
+
+  _MyHomePageState() {
+
+  }
+
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -58,6 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -65,11 +97,10 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return new Scaffold(
-      appBar: new AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: new Text(widget.title),
-      ),
+
+      backgroundColor: Color.fromRGBO(255, 250, 247, 1.0),
       body: new Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -89,12 +120,32 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            new Image.asset(
+                'imgs/trvlogo.png',
+                fit: BoxFit.cover
+            )
+            ,
+            new SizedBox(height: 80.00),
             new Text(
-              'You have pushed the button this many times:',
+              'Where do you want to go? '
+                ,textScaleFactor: 2.0,
+                style: TextStyle(fontFamily: 'serif', color: Colors.brown)
             ),
+           new SizedBox(height: 50.00),
+           new DropdownButton<String>(
+          items: <String>['San Franscisco', 'Los Angeles', 'Jakarta', 'Melbourne'].map((String value) {
+            return new DropdownMenuItem<String>(
+              value: value,
+              child: new Text(value),
+            );
+          }).toList(),
+          onChanged: (_) {},
+        ),
+            new SizedBox(height: 40.00),
+
             new Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
+              'Take me somewhere new!', textScaleFactor: 1.7,
+                style: TextStyle(fontFamily: 'serif', color: Colors.brown)
             ),
           ],
         ),
